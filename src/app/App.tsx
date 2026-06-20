@@ -8,6 +8,7 @@ import { GivePage } from "./components/GivePage";
 import { PrayerPage } from "./components/PrayerPage";
 import { InquiryPage } from "./components/InquiryPage";
 import { FadeUp } from "./components/FadeUp";
+import { ConnectPage } from "./components/ConnectPage";
 
 import screenshotPic from "../imports/Screenshot_2026-06-19_232524.png";
 // pulpit_pic.jpg not present — fallback to screenshot until you add the pulpit image
@@ -17,7 +18,7 @@ import communityPhoto from "../imports/malingin_community.jpg";
 import maayoPic from "../imports/MaAYO_pic.jpg";
 import choralePic from "../imports/Chorale_pic.jpg";
 
-type PageId = "main" | "maayo" | "chorale" | "about" | "give" | "prayer" | "inquiry";
+type PageId = "main" | "maayo" | "chorale" | "about" | "give" | "prayer" | "inquiry" | "connect";
 
 const NAV_ITEMS = [
   { id: "home", icon: Home, label: "Home" },
@@ -463,6 +464,7 @@ function ConnectTab({ onNavigate }: ConnectTabProps) {
 }
 
 const MENU_ITEMS: { label: string; page?: PageId; href?: string }[] = [
+  { label: "Connect", page: "connect" },
   { label: "About the Church", page: "about" },
   { label: "Give / Tithe", page: "give" },
   { label: "Prayer Request", page: "prayer" },
@@ -493,6 +495,7 @@ export default function App() {
     maayo: <MaAYOPage onBack={handleBack} />,
     chorale: <ChoralePage onBack={handleBack} />,
     about: <AboutPage onBack={handleBack} />,
+    connect: <ConnectPage onBack={handleBack} onNavigate={handleNavigate} />,
     give: <GivePage onBack={handleBack} />,
     prayer: <PrayerPage onBack={handleBack} />,
     inquiry: <InquiryPage onBack={handleBack} />,
