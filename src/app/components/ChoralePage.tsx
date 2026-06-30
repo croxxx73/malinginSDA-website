@@ -144,15 +144,15 @@ export function ChoralePage({ onBack }: Props) {
             </div>
 
             {/* Info cards — right */}
-            <div className="w-full md:w-56 shrink-0 flex flex-row md:flex-col gap-3">
+            <div className="w-full md:w-56 shrink-0 grid grid-cols-3 md:grid-cols-1 gap-3">
               {INFO_CARDS.map((card) => (
                 <div
                   key={card.label}
-                  className="flex-1 md:flex-none rounded-2xl px-4 py-5 text-center border"
+                  className="rounded-2xl px-3 md:px-4 py-4 md:py-5 text-center border"
                   style={{ background: card.bg, borderColor: card.border }}
                 >
                   <p className="font-[Lato] text-[9px] uppercase tracking-widest mb-1.5" style={{ color: card.text }}>{card.label}</p>
-                  <p className="font-[Playfair_Display] text-sm font-semibold text-foreground leading-snug">{card.value}</p>
+                  <p className="font-[Playfair_Display] text-xs md:text-sm font-semibold text-foreground leading-snug">{card.value}</p>
                 </div>
               ))}
             </div>
@@ -224,7 +224,7 @@ export function ChoralePage({ onBack }: Props) {
           <FadeUp delay={60}>
             <div className="rounded-2xl overflow-hidden border border-sky-100 shadow-sm bg-white">
               {/* 3-photo actor strip */}
-              <div className="grid grid-cols-3 h-52">
+              <div className="grid grid-cols-3 h-40 sm:h-52">
                 {[
                   { photo: skyPhoto, name: "Shekinah Marfil", role: "The Youth" },
                   { photo: lorlenPhoto, name: "Lorlen Terante", role: "The Adult" },

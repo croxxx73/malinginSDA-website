@@ -886,7 +886,7 @@ export default function App() {
       {/* Intro screen — renders on top, removed after animation */}
       {showIntro && <IntroScreen onComplete={() => setShowIntro(false)} />}
 
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background overflow-x-hidden">
         {/* Floating pill nav */}
         <NavBar
           activeTab={activeTab}

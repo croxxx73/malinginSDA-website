@@ -191,7 +191,7 @@ export function MaAYOPage({ onBack }: Props) {
           </FadeUp>
 
           {/* Lorlen + Charmaine — equal side-by-side grid */}
-          <div className="w-full md:flex-1 grid grid-cols-2 gap-4">
+          <div className="w-full md:flex-1 grid grid-cols-2 gap-3 md:gap-4">
             {LEADERS.filter(l => !l.featured).map((leader, i) => (
               <FadeUp key={leader.name} delay={(i + 1) * 90}>
                 <motion.div

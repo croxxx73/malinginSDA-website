@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "motion/react";
+import adventistLogo from "../../imports/adventist_logo.webp";
 
 interface IntroScreenProps {
   onComplete: () => void;
@@ -31,30 +32,16 @@ export function IntroScreen({ onComplete }: IntroScreenProps) {
 
       {/* SDA logo silhouette behind door */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <svg
-          viewBox="0 0 200 230"
-          xmlns="http://www.w3.org/2000/svg"
-          style={{ width: "28vw", height: "auto", opacity: 0.07 }}
-          fill="white"
-        >
-          {/* Left outer flame sweep */}
-          <path d="M97 175 C90 158 74 132 55 105 C35 76 18 48 28 18 C34 3 47 -3 58 2 C44 16 43 40 54 66 C64 90 79 122 88 155 Z" />
-          {/* Left inner flame highlight stripe */}
-          <path d="M91 172 C84 154 70 128 55 103 C42 82 36 60 43 38 C47 26 54 19 60 20 C50 32 51 52 60 74 C69 96 82 126 88 155 Z" />
-          {/* Right outer flame sweep */}
-          <path d="M103 175 C110 158 126 132 145 105 C165 76 182 48 172 18 C166 3 153 -3 142 2 C156 16 157 40 146 66 C136 90 121 122 112 155 Z" />
-          {/* Right inner flame highlight stripe */}
-          <path d="M109 172 C116 154 130 128 145 103 C158 82 164 60 157 38 C153 26 146 19 140 20 C150 32 149 52 140 74 C131 96 118 126 112 155 Z" />
-          {/* Cross at base of flame */}
-          <rect x="94" y="165" width="12" height="26" rx="2" />
-          <rect x="80" y="174" width="40" height="10" rx="2" />
-          {/* Open Bible — left page */}
-          <path d="M96 193 C82 188 56 191 30 204 C15 212 10 222 20 227 C34 233 64 225 88 212 Z" />
-          {/* Open Bible — right page */}
-          <path d="M104 193 C118 188 144 191 170 204 C185 212 190 222 180 227 C166 233 136 225 112 212 Z" />
-          {/* Bible center spine */}
-          <ellipse cx="100" cy="200" rx="6" ry="9" />
-        </svg>
+        <img
+          src={adventistLogo}
+          alt=""
+          style={{
+            width: "clamp(130px, 38vw, 240px)",
+            height: "auto",
+            opacity: 0.18,
+            filter: "brightness(0) invert(1)",
+          }}
+        />
       </div>
 
       {/* Subtle light bloom at bottom */}
