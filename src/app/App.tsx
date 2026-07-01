@@ -15,6 +15,7 @@ import { InquiryPage } from "./components/InquiryPage";
 import { FadeUp } from "./components/FadeUp";
 import { ConnectPage } from "./components/ConnectPage";
 import { IntroScreen } from "./components/IntroScreen";
+import { AdminPage } from "./components/AdminPage";
 
 import screenshotPic from "../imports/Screenshot_2026-06-19_232524.png";
 const churchPhoto: string = screenshotPic;
@@ -23,7 +24,7 @@ import communityPhoto from "../imports/malingin_community.jpg";
 import maayoPic from "../imports/MaAYO_pic.jpg";
 import choralePic from "../imports/Chorale_pic.jpg";
 
-type PageId = "main" | "maayo" | "chorale" | "about" | "give" | "prayer" | "inquiry" | "connect";
+type PageId = "main" | "maayo" | "chorale" | "about" | "give" | "prayer" | "inquiry" | "connect" | "admin";
 
 const NAV_LINKS: { label: string; tab?: string; page?: PageId }[] = [
   { label: "Home", tab: "home" },
@@ -844,7 +845,9 @@ function ConnectTab({ onNavigate }: { onNavigate: (p: PageId) => void }) {
 export default function App() {
   const [showIntro, setShowIntro] = useState(true);
   const [activeTab, setActiveTab] = useState("home");
-  const [currentPage, setCurrentPage] = useState<PageId>("main");
+  const [currentPage, setCurrentPage] = useState<PageId>(() =>
+    window.location.hash === "#admin" ? "admin" : "main"
+  );
 
   const handleNavigate = (page: PageId) => {
     setCurrentPage(page);
@@ -870,6 +873,7 @@ export default function App() {
     give: <GivePage onBack={handleBack} />,
     prayer: <PrayerPage onBack={handleBack} />,
     inquiry: <InquiryPage onBack={handleBack} />,
+    admin: <AdminPage onBack={handleBack} />,
   };
 
   const tabs: Record<string, React.ReactNode> = {
@@ -880,6 +884,11 @@ export default function App() {
   };
 
   const content = currentPage !== "main" ? fullPageComponents[currentPage] : tabs[activeTab];
+
+  // Admin panel renders completely standalone — no nav, no intro
+  if (currentPage === "admin") {
+    return <AdminPage onBack={handleBack} />;
+  }
 
   return (
     <>

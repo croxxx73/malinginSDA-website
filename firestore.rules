@@ -1,0 +1,51 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper: is the requesting user a registered admin?
+    function isAdmin() {
+      return request.auth != null &&
+        (request.auth.token.email in
+          get(/databases/$(database)/documents/config/adminEmails).data.emails);
+    }
+
+    // config/adminEmails — only admins read, only admins write
+    match /config/adminEmails {
+      allow read, write: if isAdmin();
+    }
+
+    // Announcements — public read, admin write
+    match /announcements/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Events — public read, admin write
+    match /events/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Sermons — public read, admin write
+    match /sermons/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Give settings — public read, admin write
+    match /give_settings/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Transactions — admin only (private financial data)
+    match /transactions/{id} {
+      allow read, write: if isAdmin();
+    }
+
+    // Deny everything else by default
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
